@@ -1,0 +1,44 @@
+Make a game:
+
+Minesweeper
+
+Features
+
+- choice of grid size?
+- dark and light theme options?
+- time select option?
+- save game state to local memory?
+- mutable music track?
+- scoring: points per successful click? and time?
+- optional - show surrounding tiles when both mouse buttons are clicked on a tile simultanously
+
+HTML
+
+- make minesweeper tiles
+- make settings section
+- get svgs to use as mines, explosion, flags
+- make timer section
+- make winning card and losing one
+
+CSS
+
+- tiles
+- flags
+- mines
+- top bar
+- settings
+- win screen
+- loss screen
+- buttons
+
+JS
+
+- algo to randomly place set number of mines
+- detect clicks on the squares
+    - reveal underneath
+- detect right clicks on the squares
+    - place flag
+- detect mine hit
+    - cause game loss
+- detect no remaining non mine squares
+    - cause game win
