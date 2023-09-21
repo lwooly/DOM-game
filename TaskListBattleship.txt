@@ -1,0 +1,15 @@
+Make a game:
+
+# Battleship
+## Basic version
+Singleplayer, computer places ships, you are guessing which tiles have enemy ships, and attempting to beat your lowest number of guesses to hit all ships.
+- render a grid
+- Randomly place ships for the player to try and hit
+- Have rules so ships are lines and a set size
+  - Only let ships go in vertical or horizontal lines?
+- have the tiles be clickable
+- detect if a ship is below on click
+  - then render ship
+- Track number of clicks for score
+- Create a fail state screen
+- Button to reset and play again
