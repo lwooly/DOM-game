@@ -1,16 +1,16 @@
 import { GameTurns } from "../turnManager.js";
 import { createGridSquareHTML } from "./createGridSquareHTML.js";
 
-export const renderBoard = (boards, boardNode, titleNode, turnManager, HTMLfn = createGridSquareHTML) => {
+
+//render board based on turn and provide a title for which players turn
+
+export const renderBoard = ({ boards, boardNode, titleNode, turnManager, HTMLfn }) => {
     //determine which board to render based on turn
     const boardManager = whichBoard(turnManager, boards)
-    console.log(boardManager.player, `is this called?`)
 
-    //create title for board
-    const heading = document.createElement('h1')
-    heading.textContent = `${boardManager.player}'s turn`
-
-    titleNode.append(heading)
+    //Update title to show which turn it is
+    const turnHeading = turnTitle(turnManager)
+    titleNode.replaceChildren(turnHeading)
 
     //create fragment to limit DOM calls
     const fragment = document.createDocumentFragment()
@@ -27,21 +27,20 @@ export const renderBoard = (boards, boardNode, titleNode, turnManager, HTMLfn = 
 
 export const whichBoard = (turnManager, boards) => {
     //determine which board to render - initially allow 5 set up clicks per player
-    
-    console.log(turnManager, `turn????`)
-    //for turns 1 - 5 players place "ships"
-    if (turnManager.turn < 5) {
-        if (turnManager.player1Turn) {
+
+    //for turns 1 - 6 players place "ships"
+    if (turnManager.turn < 6) {
+        //player 1 needs to see own board to set ships
+        if (!turnManager.player()) {
             console.log(`Player 1 board`)
             return boards.player1Board;
-
         } else {
             console.log(`Player 2 board`)
             return boards.player2Board;
         }
     } else {
-        // for remaining turns alternative board is rendered
-        if (turnManager.player1Turn) {
+        // for remaining turns alternative board is rendered so player is selecting hits on other board
+        if (!turnManager.player()) {
             console.log(`Player 2 board`)
             return boards.player2Board;
         } else {
@@ -49,4 +48,15 @@ export const whichBoard = (turnManager, boards) => {
             return boards.player1Board;
         }
     }
+}
+
+const turnTitle = (turnManager) => {
+    //create title for board based on which players turn
+    const heading = document.createElement('h1')
+    if (turnManager.player()) {
+        heading.textContent = `Player 2 turn`
+    } else {
+        heading.textContent = `Player 1 turn`
+    }
+    return heading;
 }

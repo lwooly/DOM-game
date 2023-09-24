@@ -1,25 +1,20 @@
 //turnManager
 export class GameTurns {
-    constructor() {
-        this.turn = 0,
-        this.player1Turn = true;
-        this.player2Turn = false;
+    constructor(placeTurns) {
+        this.turn = 0
     }
 
-    playerTurnUpdate() {
-        if (this.turn % 2 === 0) {
-            this.player1Turn = true;
-            this.player2Turn = false;
-        } else {
-            this.player1Turn = false;
-            this.player2Turn = true;
-        }
+
+ //function to determine which player - return 0 for player1 and 1 for player2
+    player() {
+         return this.turn % 2 === 0 ? 0 : 1;
     }
-    
+
+
     turnComplete() {
         this.turn += 1;
-        this.playerTurnUpdate()
+        console.log(`turn updated. Turn: ${this.turn}`)
     }
 
-    
+
 }
