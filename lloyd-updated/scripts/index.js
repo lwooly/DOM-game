@@ -7,7 +7,11 @@ import { GameTurns } from "./turnManager.js"
 
 
 // VARIABLES
+//flag to prevent multiple clicks per turn
+let clickFlag = true;
 
+//flag to ensure user has turn before clicking next btn
+let shipSet = false;
 
 // FUNCTIONS
 
@@ -45,10 +49,10 @@ const gameBoardsObj = {
 //create object of parameters to pass in to function as same each call
 
 const renderBoardParams = {
-    boards: gameBoardsObj, 
-    boardNode:gameBoard, 
-    titleNode:titleNode, 
-    turnManager:turnManager,
+    boards: gameBoardsObj,
+    boardNode: gameBoard,
+    titleNode: titleNode,
+    turnManager: turnManager,
     HTMLfn: createGridSquareHTML
 }
 
@@ -60,29 +64,48 @@ renderBoard(renderBoardParams)
 
 // this currently allows for many clicks per turn - limit to selection of a single square???
 gameBoard.addEventListener('click', (event) => {
-    //find square clicked
-    const id = event.target.dataset.id
 
-    //update properties of grid square
+    //limit selection of one square using click flag - set to false after a click and reset by turn button.
+    console.log(clickFlag)
+    if (clickFlag) {
+        //find square clicked
+        const id = event.target.dataset.id
 
-    //Find correct board player 1 or player 2 depending on game turns
-    const board = whichBoard(turnManager, gameBoardsObj)
-    //make ships when user clicks a tile before turn 6
-    if (turnManager.turn < 6) {
-        board.makeShipById(id)
+        //update properties of grid square
+
+        //Find correct board player 1 or player 2 depending on game turns
+        const board = whichBoard(turnManager, gameBoardsObj)
+        //make ships when user clicks a tile before turn 6
+        if (turnManager.turn < 6) {
+            board.makeShipById(id)
+        } else {
+            //select square after turn 6 to show hit or miss
+            board.selectGridSquareById(id)
+        }
+
+        //re-render board to show ship
+        renderBoard(renderBoardParams)
+
+        //set flags to allow for next turn BTN to be pressed
+        clickFlag = false;
+        shipSet = true;
     } else {
-        //select square after turn 6 to show hit or miss
-        board.selectGridSquareById(id)
+        console.log('location selected')
     }
-
-    //re-render board to show ship
-    renderBoard(renderBoardParams)
 })
 
 //button to move to next turn
 nextTurnBtn.addEventListener('click', () => {
-    turnManager.turnComplete()
-    renderBoard(renderBoardParams)
+    if (shipSet) {
+        turnManager.turnComplete()
+        clickFlag = true;
+        renderBoard(renderBoardParams)
+    } else {
+        console.log("need to set ship")
+    }
+
+    //reset flag
+    shipSet = false;
 })
 
 //this works but need to be confirmed by a click of a button rather than by instant click.
