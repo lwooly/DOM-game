@@ -10,7 +10,7 @@ import { GameTurns } from "./turnManager.js"
 //flag to prevent multiple clicks per turn
 let clickFlag = true;
 
-//flag to ensure user has turn before clicking next btn
+//flag to ensure user has turn before clicking next turn btn
 let shipSet = false;
 
 // FUNCTIONS

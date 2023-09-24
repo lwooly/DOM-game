@@ -2,12 +2,15 @@
     display: grid;
     grid-template-columns: repeat(10, 1fr);
     grid-template-rows: repeat(10, 1fr);
+    background-image: url(https://media.istockphoto.com/id/1136870172/photo/blue-sea-water-background-atlantic.webp?b=1&s=170667a&w=0&k=20&c=JsBTxVgUqpkZwLlTwsU2XWGGR6noHtWSVy7n3G813BU=);
+    background-position: center;
+    background-size: cover;
 }
 
 
 .grid-square {
-    background-color: rgb(89, 136, 198);
-    border: 1px solid darkblue;
+    background-color: transparent;
+    border: 1px solid lightgrey;
     height: 0;
     padding-bottom: 100%;
 }
