@@ -13,3 +13,13 @@ Singleplayer, computer places ships, you are guessing which tiles have enemy shi
 - Track number of clicks for score
 - Create a fail state screen
 - Button to reset and play again
+
+
+Lloyds thoughts 
+
+- Need a way to hide ships when not the players turn ie. looking at the other players board.
+- score counts - seperate function
+- graphics - could we use GIFs to make it look more polished? render a background GIF in the square rather than just a white or grey tile etc.
+- how to make ships multiple squares?
+- general styling....
+- how to check when all ships hit and declare winner
