@@ -28,17 +28,31 @@ export class GridManager {
     }
 
     //set up the board with a total number of squares - must be equal sizes
-    setupBoard(numSquares = 100) {
-        for (let i = 0; i < 100; i++) {
-            this.createGridSquare(i)
+
+    //gridsize doesn't work as css grid layout would need updating to match
+    setupBoard(gridsize = 10) {
+        //Make the grids named by row and column as a grid layout
+        //numbers 1 -10
+        for (let i = 0; i < gridsize; i++) {
+            //letters 
+            for (let j = 65; j < 65 + gridsize; j++) {
+
+                //combine to make grid reference
+                const id = String(i) + String.fromCharCode(j)
+                // console.log(id)
+
+                //create a grid square with this ID.
+                this.createGridSquare(id)
+            }
         }
     }
 
 
     //read
     getGridSquareByID(id) {
+
         const gridSquare = this.board.find((square) => {
-            return square._id === Number(id);
+            return square._id === id;
         })
         return gridSquare;
     }
@@ -53,7 +67,9 @@ export class GridManager {
     }
 
     makeShipById(id) {
+        console.log(id)
         const gridSquare = this.getGridSquareByID(id)
+        console.log(gridSquare)
         gridSquare.makeShip()
     }
     

@@ -77,6 +77,7 @@ gameBoard.addEventListener('click', (event) => {
         const board = whichBoard(turnManager, gameBoardsObj)
         //make ships when user clicks a tile before turn 6
         if (turnManager.turn < 6) {
+            console.log(id, `id`)
             board.makeShipById(id)
         } else {
             //select square after turn 6 to show hit or miss
