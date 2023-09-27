@@ -3,6 +3,8 @@ import { GridSquare, GridManager } from "./board-manage-classes.js"
 import { createGridSquareHTML } from "./renderBoard/createGridSquareHTML.js"
 import { renderBoard, whichBoard } from "./renderBoard/renderBoard.js"
 import { GameTurns } from "./turnManager.js"
+import { computerTurn } from "./computer-turn/computer-go.js"
+
 
 
 
@@ -11,7 +13,7 @@ import { GameTurns } from "./turnManager.js"
 let clickFlag = true;
 
 //flag to ensure user has turn before clicking next turn btn
-let shipSet = false;
+let turnSet = false;
 
 // FUNCTIONS
 
@@ -64,12 +66,15 @@ renderBoard(renderBoardParams)
 
 // this currently allows for many clicks per turn - limit to selection of a single square???
 gameBoard.addEventListener('click', (event) => {
-
     //limit selection of one square using click flag - set to false after a click and reset by turn button.
     console.log(clickFlag)
-    if (clickFlag) {
+
+    //check for click flag and that it is player 1s go - not the computer
+    if (!turnManager.player() && clickFlag) {
         //find square clicked
         const id = event.target.dataset.id
+
+        console.log(id)
 
         //update properties of grid square
 
@@ -89,7 +94,7 @@ gameBoard.addEventListener('click', (event) => {
 
         //set flags to allow for next turn BTN to be pressed
         clickFlag = false;
-        shipSet = true;
+        turnSet = true;
     } else {
         console.log('location selected')
     }
@@ -97,18 +102,29 @@ gameBoard.addEventListener('click', (event) => {
 
 //button to move to next turn
 nextTurnBtn.addEventListener('click', () => {
-    if (shipSet) {
+    //turn set checks if a ship has been set and the turn can end
+    if (turnSet) {
         turnManager.turnComplete()
-        clickFlag = true;
+        
+        //render the board for the next turn:
         renderBoard(renderBoardParams)
+        //reset flags
+        turnSet = false;
+        clickFlag = true;
+
+        //check if it is now the computers turn.
+        if (turnManager.player()) {
+            console.log('computers turn now')
+
+            //the computer has a turn - run functions
+            computerTurn(turnManager, gameBoardsObj)
+            //change turn flag to allow next turn button to be pressed by the player
+            turnSet = true;
+
+            //re-render the board to show the computers choices
+            renderBoard(renderBoardParams)
+        }
     } else {
         console.log("need to set ship")
     }
-
-    //reset flag
-    shipSet = false;
 })
-
-//this works but need to be confirmed by a click of a button rather than by instant click.
-
-//initial clicks add a token blue marker then call make ship by ID on the eventual button press

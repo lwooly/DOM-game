@@ -69,10 +69,12 @@ export class GridManager {
     makeShipById(id) {
         console.log(id)
         const gridSquare = this.getGridSquareByID(id)
-        console.log(gridSquare)
+        console.log(gridSquare, `grid square made ship by ID`)
         gridSquare.makeShip()
     }
     
+
+    //this selects for the game - ie shoot
     selectGridSquareById(id) {
         const gridSquare = this.getGridSquareByID(id)
         gridSquare.selectGridSquare()
