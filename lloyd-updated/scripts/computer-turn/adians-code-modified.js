@@ -139,13 +139,15 @@ function shipClassifier(ship, board) {
   const tile1_id = String(ship.tile1);
   const tile2_id = String(ship.tile2);
   const tile3_id = String(ship.tile3);
-  //   grabs the elements from the board using method on board manager class
+
+  //   grabs the elements from the board using method on board manager class rather than ids
   
   const shipTile1 = board.getGridSquareByID(tile1_id)
   const shipTile2 = board.getGridSquareByID(tile2_id)
   const shipTile3 = board.getGridSquareByID(tile3_id);
 
-  // const shipTile1 = document.getElementsByClassName(tile1);
+  // const shipTile1 = 
+  // document.getElementsByClassName(tile1);
   // const shipTile2 = document.getElementsByClassName(tile2);
   // const shipTile3 = document.getElementsByClassName(tile3);
   // add the ship class to these grid squares using the make ship method in the GridSquare class.
