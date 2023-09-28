@@ -1,5 +1,5 @@
 
-export const createGridSquareHTML = ({_id, isShip, selected}) => {
+export const createGridSquareHTML = ({_id, isShip, selected, shipVisible}) => {
 
     //create standard grid square
     const gridSquare = document.createElement('div')
@@ -13,6 +13,11 @@ export const createGridSquareHTML = ({_id, isShip, selected}) => {
 
     if (selected) {
         gridSquare.classList.add('selected')
+    }
+
+    // add a class to the tile if the ship is to be visible - set to false for the computers ships - turns on when hit.
+    if (shipVisible) {
+        gridSquare.classList.add('ship-visible')
     }
 
     return gridSquare

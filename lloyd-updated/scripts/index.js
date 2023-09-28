@@ -86,7 +86,8 @@ gameBoard.addEventListener('click', (event) => {
             board.makeShipById(id)
         } else {
             //select square after turn 6 to show hit or miss
-            board.selectGridSquareById(id)
+            const selectedGridSquare = board.selectGridSquareById(id)
+            
         }
 
         //re-render board to show ship
@@ -107,7 +108,8 @@ nextTurnBtn.addEventListener('click', () => {
         turnManager.turnComplete()
         
         //render the board for the next turn:
-        renderBoard(renderBoardParams)
+            renderBoard(renderBoardParams)
+        
         //reset flags
         turnSet = false;
         clickFlag = true;
@@ -128,3 +130,5 @@ nextTurnBtn.addEventListener('click', () => {
         console.log("need to set ship")
     }
 })
+
+

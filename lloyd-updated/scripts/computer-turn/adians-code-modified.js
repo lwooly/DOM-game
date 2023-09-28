@@ -134,7 +134,7 @@ function genHorizShip() {
 
 //* Function to apply the class of '.ship' to the elements returned by genVertShip and genHorizShip, it will then be placed with them inside genShip
 function shipClassifier(ship, board) {
-  console.log(ship)
+  // console.log(ship)
   // grabs the tile codes of the ship squares
   const tile1_id = String(ship.tile1);
   const tile2_id = String(ship.tile2);
@@ -150,10 +150,10 @@ function shipClassifier(ship, board) {
   // document.getElementsByClassName(tile1);
   // const shipTile2 = document.getElementsByClassName(tile2);
   // const shipTile3 = document.getElementsByClassName(tile3);
-  // add the ship class to these grid squares using the make ship method in the GridSquare class.
-  shipTile1.makeShip()
-  shipTile2.makeShip()
-  shipTile3.makeShip()
+  // add the ship class to these grid squares using the make  computers ship method in the GridSquare class.
+  shipTile1.makeComputersShip()
+  shipTile2.makeComputersShip()
+  shipTile3.makeComputersShip()
   // DEBUG
   // console.log('getelementbyclassname', document.getElementsByClassName(tile1))
   // console.log(shipTile1[0])
@@ -170,16 +170,16 @@ function shipChecker(ship, board) {
 
   //   grabs the elements from the document - lloyd changed to get the tiles using the manager methods.
 
-  console.log(board)
+  // console.log(board)
   const shipTile1 = board.getGridSquareByID(tile1_id)
   const shipTile2 = board.getGridSquareByID(tile2_id)
   const shipTile3 = board.getGridSquareByID(tile3_id);
   // DEBUG
   // console.log('getelementbyclassname', document.getElementsByClassName(tile1))
 
-  console.log(shipTile1.isShip)
-  console.log(shipTile2)
-  console.log(shipTile3)
+  // console.log(shipTile1.isShip)
+  // console.log(shipTile2)
+  // console.log(shipTile3)
 
   // checks if the tiles are already a ship using the isShip attribute on the gridsquare class
   if (shipTile1.isShip || shipTile2.isShip || shipTile3.isShip) {

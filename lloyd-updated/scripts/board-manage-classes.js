@@ -3,6 +3,7 @@ export class GridSquare {
         this._id = id;
         this.isShip = false,
         this.selected = false
+        this.shipVisible = true;
     }
 
     selectGridSquare() {
@@ -11,6 +12,11 @@ export class GridSquare {
 
     makeShip() {
         this.isShip = true;
+    }
+
+    makeComputersShip() {
+        this.isShip = true;
+        this.shipVisible = false;
     }
 }
 
@@ -78,6 +84,7 @@ export class GridManager {
     selectGridSquareById(id) {
         const gridSquare = this.getGridSquareByID(id)
         gridSquare.selectGridSquare()
+        return gridSquare;
     }
 
     //delete
