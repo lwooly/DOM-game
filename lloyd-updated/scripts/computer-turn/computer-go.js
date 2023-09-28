@@ -15,6 +15,8 @@ export const computerTurn = (turnManager, gameBoardsObj) => {
         console.log('the computers board', board)
         genValidShip(board)
 
+        console.log(board, 'this board is being passed to the computer to select a square')
+
     } else {
         //select square after turn 6 to show hit or miss
         // board.selectGridSquareById("1A")
