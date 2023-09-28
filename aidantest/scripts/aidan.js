@@ -122,7 +122,7 @@ function genHorizShip() {
   // console.log('tile 2 class code', tile2)
   // console.log('tile 2 class code', tile3)
   // console.log('horizship class codes', tile1, tile2, tile3)
-
+  
   // returns horizontal ship object with classes inside
   return {
     tile1: tile1,
@@ -168,64 +168,130 @@ function shipChecker(ship) {
   // console.log(shipTile1[0])
   // console.log(shipTile2[0])
   // console.log(shipTile3[0])
-
+  
   // checks if the ship class is on the elements
   if (
     shipTile1[0].classList.contains("ship") ||
     shipTile2[0].classList.contains("ship") ||
     shipTile3[0].classList.contains("ship")
-  ) {
-    // console.log('This is already a ship')
-    return true;
-  } else {
-    // console.log('This is a new valid ship')
-    return false;
+    ) {
+      // console.log('This is already a ship')
+      return true;
+    } else {
+      // console.log('This is a new valid ship')
+      return false;
+    }
   }
-}
-
-//* Function that randomly picks horizontal or vertical, and generates a random ship on that axis [returns the generated ship object with the 3 tile codes as strings]
-function genShip() {
-  // Gets random direction for the ship
-  let dir = direction();
-  // DEBUG
-  // Check the direction of the ship is correct
-  // console.log(dir);
-  // generates a ship based on the direction
-  if (dir === "vertical") {
-    return genVertShip();
-  } else {
-    return genHorizShip();
+  
+  //* Function that randomly picks horizontal or vertical, and generates a random ship on that axis [returns the generated ship object with the 3 tile codes as strings]
+  function genShip() {
+    // Gets random direction for the ship
+    let dir = direction();
+    // DEBUG
+    // Check the direction of the ship is correct
+    // console.log(dir);
+    // generates a ship based on the direction
+    if (dir === "vertical") {
+      return genVertShip();
+    } else {
+      return genHorizShip();
+    }
   }
-}
-
-//* Function that incorporates the others
-//*     Generates a ship
-//*     Checks if it's already a ship
-//*     If it's already a ship, generates another ship and repeats
-//*     If it's not a ship, classifies those tiles as ship tiles
-function genValidShip() {
-  // Create a new ship
-  let newShip = genShip();
-  // Check that the ship is valid
-  do {
-    newShip = genShip();
-  } while (shipChecker(newShip));
-  // insert the valid ship into the page
-  shipClassifier(newShip);
-//   console.log("valid ship generated");
-}
-
-//* ------------ //
-//* TEST SECTION //
-//* ------------ //
-//* Testing Calls
-const testVertShip = genVertShip();
-const testHorizShip = genHorizShip();
-const testShip1 = genShip();
-const testShip2 = genShip();
-// console.log("Test Vertical Ship", testVertShip);
-// console.log("Test Horizontal Ship", testHorizShip);
-console.log("Test Random Ship 1", testShip1);
+  
+  //* Function that incorporates the others
+  //*     Generates a ship
+  //*     Checks if it's already a ship
+  //*     If it's already a ship, generates another ship and repeats
+  //*     If it's not a ship, classifies those tiles as ship tiles
+  function genValidShip() {
+    // Create a new ship
+    let newShip = genShip();
+    // Check that the ship is valid
+    do {
+      newShip = genShip();
+    } while (shipChecker(newShip));
+    // insert the valid ship into the page
+    shipClassifier(newShip);
+    //   console.log("valid ship generated");
+  }
+  
+  //* Function to pick a single random grid square
+  function genSingleSquare() {
+    // generate tiles
+    const tileNumbers = getNumberAxis(lowBound, highBound);
+    const tileLetters = getLetterAxis(lowBound, highBound);
+    // get tile 1 coordinates
+    const tile1 = String(tileNumbers.num + tileLetters.letter);
+    // DEBUG
+    // console.log('get letter axis object', tile1X)
+    // console.log('tile 1 class code', tile1)
+    // console.log('vertship class codes', tile1, tile2, tile3)
+    
+    // returns single tile object with class inside
+    return {
+      tile1: tile1
+    };
+  }
+  console.log('genSingleSquare', genSingleSquare())
+  
+  //* Function that checks if tiles returned by genSingleSquare has already been shot [returns a boolean, shot = true, not shot = false]
+  function shotChecker(shot) {
+    // grabs the tile codes of the shot squares
+    const tile1 = String(shot.tile1);
+    //   grabs the elements from the document
+    const shotTile1 = document.getElementsByClassName(tile1);
+    // DEBUG
+    // console.log('getelementbyclassname', document.getElementsByClassName(tile1))
+    // console.log(shotTile1[0])
+    
+    // checks if the shot class is on the elements
+    if (shotTile1[0].classList.contains("shot")) {
+      // console.log('This square has been shot')
+      return true;
+    } else {
+      // console.log('This square has not been shot')
+      return false;
+    }
+  }
+  
+  //* Function to apply the class of '.shot' to the elements returned by genVertShip and genHorizShip, it will then be placed with them inside genShip
+  function shotClassifier(shot) {
+    // grabs the tile codes of the shot squares
+    const tile1 = String(shot.tile1);
+    //   grabs the elements from the document
+    const shotTile1 = document.getElementsByClassName(tile1);
+    // adds the shot class to the elements
+    shotTile1[0].classList.add("shot");
+    // DEBUG
+    // console.log('getelementbyclassname', document.getElementsByClassName(tile1))
+    // console.log(shotTile1[0])
+  }
+  
+  //* Function that randomly shoots a grid square by giving it the class of 'shot'
+  function shootRandomGridSquare() {
+    // Create a new shot
+    let newShot = genSingleSquare();
+    // Check that the shot is valid
+    do {
+      newShot = genSingleSquare();
+    } while (shotChecker(newShot));
+    // insert the valid ship into the page
+    shotClassifier(newShot);
+    //   console.log("valid shot generated");
+  }
+  
+  
+  //* ------------ //
+  //* TEST SECTION //
+  //* ------------ //
+  //* Testing Calls
+  const testVertShip = genVertShip();
+  const testHorizShip = genHorizShip();
+  const testShip1 = genShip();
+  const testShip2 = genShip();
+  // console.log("Test Vertical Ship", testVertShip);
+  // console.log("Test Horizontal Ship", testHorizShip);
+  console.log("Test Random Ship 1", testShip1);
 console.log("Test Random Ship 2", testShip2);
 // console.log('test random ship', genShip())
 
@@ -246,6 +312,13 @@ genValidShip();
 genValidShip();
 genValidShip();
 genValidShip();
+
+
+shootRandomGridSquare();
+
+
+
+
 
 // - have the tiles be clickable =====================================
 //   - check how event listeners work with regards to clicking specific tiles ==============================

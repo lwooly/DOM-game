@@ -1,19 +1,3 @@
-// Make a game:
-
-// # Battleship
-// ## Basic version
-// Singleplayer, computer places ships, you are guessing which tiles have enemy ships, and attempting to beat your lowest number of guesses to hit all ships.
-
-// - render a grid ============================================
-// - Have rules so ships are lines and a set size
-//   - Only let ships go in vertical or horizontal lines?
-
-// - Randomly place ships for the player to try and hit
-//   - give it a toggleable class on selection =======================================
-//   - random number generator to pick column, then another to pick row for starting ship tile ======================================
-//     - another random gen to pick horizontal or vertical ========================================
-//   TODO abstract this out into a single function to generate one ship made of 3-4 pieces
-
 //* --------- //
 //* VARIABLES //
 //* --------- //
@@ -223,6 +207,80 @@ export function genValidShip(board) {
 //   console.log("valid ship generated");
 }
 
+  //* Function to pick a single random grid square
+  function genSquare() {
+    // generate tiles
+    const tileNumbers = getNumberAxis(lowBound, highBound);
+    const tileLetters = getLetterAxis(lowBound, highBound);
+    // get tile 1 coordinates
+    const tile1 = String(tileNumbers.num + tileLetters.letter);
+    // DEBUG
+    // console.log('get letter axis object', tile1X)
+    console.log('gensquare class code', tile1)
+    // console.log('vertship class codes', tile1, tile2, tile3)
+    
+    // returns single tile object with class inside
+    return {
+      tile1: tile1
+    };
+  }
+  // console.log('genSquare', genSquare())
+  
+  //* Function that checks if tiles returned by genSingleSquare has already been shot [returns a boolean, shot = true, not shot = false]
+  function shotChecker(shot, board) {
+    // grabs the tile codes of the shot squares
+    const tile1_id = String(shot.tile1);
+    //   grabs the elements from the document
+    console.log('what the computer is trying to select', tile1_id)
+    console.log('the board to try and use selection methods on', board)
+    const shotTile1 = board.selectGridSquareById(tile1_id)
+    console.log('shot tile 1', shotTile1)
+    // DEBUG
+    // console.log('getelementbyclassname', document.getElementsByClassName(tile1))
+    
+    // checks if the shot class is on the elements
+    // if (shotTile1[0].classList.contains("selected")) {
+    // if (shotTile1.selected) {
+    //   // console.log('This square has been shot')
+    //   return true;
+    // } else {
+    //   // console.log('This square has not been shot')
+    //   return false;
+    // }
+    
+
+    // console.log('shot tile selected', shotTile1.selected)
+    return shotTile1.selected
+  }
+  
+  //* Function to apply the class of '.shot' to the elements returned by genVertShip and genHorizShip, it will then be placed with them inside genShip
+  function shotClassifier(shot, board) {
+    // grabs the tile codes of the shot squares
+    const tile1_id = String(shot.tile1);
+    //   grabs the elements from the document
+    console.log('what the computer is trying to select [classifier]', tile1_id)
+    console.log('the board to try and use selection methods on [classifier]', board)
+    const shotTile1 = board.selectGridSquareById(tile1_id)
+    // adds the shot class to the elements
+    shotTile1[0].classList.add("selected");
+    // DEBUG
+    // console.log('getelementbyclassname', document.getElementsByClassName(tile1))
+    // console.log(shotTile1[0])
+  }
+  
+  //* Function that randomly shoots a grid square by giving it the class of 'shot'
+  export function shootRandomGridSquare(board) {
+    // Create a new shot
+    let newShot = genSquare();
+    // Check that the shot is valid
+    do {
+      newShot = genSquare();
+    } while (!shotChecker(newShot, board));
+    // insert the valid ship into the page
+    shotClassifier(newShot, board);
+    //   console.log("valid shot generated");
+  }
+
 //* ------------ //
 //* TEST SECTION //
 //* ------------ //
@@ -254,6 +312,7 @@ export function genValidShip(board) {
 // genValidShip();
 // genValidShip();
 // genValidShip();
+// shootRandomGridSquare()
 
 // - have the tiles be clickable =====================================
 //   - check how event listeners work with regards to clicking specific tiles ==============================
