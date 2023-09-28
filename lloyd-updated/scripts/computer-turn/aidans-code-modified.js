@@ -262,7 +262,8 @@ export function genValidShip(board) {
     console.log('the board to try and use selection methods on [classifier]', board)
     const shotTile1 = board.selectGridSquareById(tile1_id)
     // adds the shot class to the elements
-    shotTile1[0].classList.add("selected");
+    console.log('shot classifier class list', shotTile1)
+    // shotTile1.classList.add("selected");
     // DEBUG
     // console.log('getelementbyclassname', document.getElementsByClassName(tile1))
     // console.log(shotTile1[0])
