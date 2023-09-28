@@ -63,6 +63,30 @@ export class GridManager {
         return gridSquare;
     }
 
+    checkGameOver() {
+        //check tiles to see if not hit.  isShip but not selected
+        let shipTileNum = 0
+        let shipHitsNum = 0
+
+        for (const square of this.board) {
+            if (square.isShip) {
+                shipTileNum++;
+                if(square.selected) {
+                    shipHitsNum++;
+                }
+            }
+        }
+
+        console.log(shipTileNum, `Ship tiles`)
+        console.log(shipHitsNum, `Ship hits`)
+
+        if (shipHitsNum === shipTileNum) {
+            return true
+        } else {
+            return false
+        }
+    }
+
     //update
     makeShip(gridSquare) {
         gridSquare.makeShip()

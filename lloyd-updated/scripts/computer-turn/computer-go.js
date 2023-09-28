@@ -20,6 +20,6 @@ export const computerTurn = (turnManager, gameBoardsObj) => {
         //A function similar to gen valid ship to select a square could be used here. use the board.selectShipByID to shoot.
     }
 
-
-
+    ///return board so it can be checked if the game is over.
+    return board
 }

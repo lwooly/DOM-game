@@ -4,6 +4,7 @@ import { createGridSquareHTML } from "./renderBoard/createGridSquareHTML.js"
 import { renderBoard, whichBoard } from "./renderBoard/renderBoard.js"
 import { GameTurns } from "./turnManager.js"
 import { computerTurn } from "./computer-turn/computer-go.js"
+import { gameOver } from "./gameOver.js"
 
 
 
@@ -29,7 +30,7 @@ const nextTurnBtn = document.querySelector('#next-turn-btn')
 const player1Board = new GridManager('Player 1')
 player1Board.setupBoard()
 
-const player2Board = new GridManager('Player 2')
+const player2Board = new GridManager("Computer")
 player2Board.setupBoard()
 
 
@@ -86,12 +87,17 @@ gameBoard.addEventListener('click', (event) => {
             board.makeShipById(id)
         } else {
             //select square after turn 6 to show hit or miss
-            const selectedGridSquare = board.selectGridSquareById(id)
-            
+            board.selectGridSquareById(id)
         }
 
-        //re-render board to show ship
+        //re-render board to show ship or shot
         renderBoard(renderBoardParams)
+
+        //check if game over
+         if (board.checkGameOver()) {
+            //present game over winner message
+            gameOver(turnManager, gameBoard)
+         }
 
         //set flags to allow for next turn BTN to be pressed
         clickFlag = false;
@@ -118,13 +124,20 @@ nextTurnBtn.addEventListener('click', () => {
         if (turnManager.player()) {
             console.log('computers turn now')
 
-            //the computer has a turn - run functions
-            computerTurn(turnManager, gameBoardsObj)
+            //the computer has a turn - run functions - returns board
+            const board = computerTurn(turnManager, gameBoardsObj)
+
+            //check if the game is over
+            if (board.checkGameOver()) {
+                gameOver(turnManager, gameBoard)
+            }
+
             //change turn flag to allow next turn button to be pressed by the player
             turnSet = true;
 
             //re-render the board to show the computers choices
             renderBoard(renderBoardParams)
+
         }
     } else {
         console.log("need to set ship")

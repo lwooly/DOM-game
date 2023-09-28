@@ -26,3 +26,16 @@
 .ship.selected {
     background-color: red;
 }
+
+/* turn this off after testing */
+.ship {
+    background-color: lightblue;
+}
+
+.game-over {
+    justify-self: center;
+    text-align: center;
+    color: white;
+    font-size: larger;
+    align-self: center;
+}
