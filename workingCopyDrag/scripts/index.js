@@ -8,8 +8,6 @@ import { gameOver } from "./gameOver.js"
 import { rotate, dragStart, dragDrop, dragEnd, dragEnter, dragLeave, dragOver, grabShip} from "../../workingCopyDrag/scripts/drag/drag.js"
 
 
-
-
 // VARIABLES
 //flag to prevent multiple clicks per turn
 let clickFlag = true;

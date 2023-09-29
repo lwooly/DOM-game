@@ -251,7 +251,7 @@ export function dragDrop(e, target, squares, container, board) {
             for (const square of shipGridSquaresVertical) {
                 square.makeShip()
             }
-
+            container.removeChild(target.ship);
 
         }
 
