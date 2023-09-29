@@ -52,11 +52,11 @@ export const whichBoard = (turnManager, boards) => {
 
 const turnTitle = (turnManager) => {
     //create title for board based on which players turn
-    const heading = document.createElement('h1')
+    const heading = document.createElement('h2')
     if (turnManager.player()) {
         heading.textContent = `Computer turn`
     } else {
-        heading.textContent = `Player 1 turn`
+        heading.textContent = `Your turn`
     }
     return heading;
 }
