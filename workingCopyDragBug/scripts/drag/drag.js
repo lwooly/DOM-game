@@ -216,42 +216,42 @@ export function dragDrop(e, target, squares, container, board) {
             for (const square of shipGridSquaresHorizontal) {
                 square.makeShip()
             }
-console.log('removing ship from container')
-container.removeChild(target.ship);
-}
+            console.log('removing ship from container')
+            container.removeChild(target.ship);
+        }
 
-// }
-// }else{
-    
-    // }
-    //is vertical - note change to direction horizontal as this provides correct values for the grid system
-} else {
-    let current = shipsArray.find(ship => ship.name === draggedShipClass).directions.horizontal;
-    
-    const droppedShipFirstId = recievingSquareNum[0] - draggedShipIndex;
-    
-    //calculte the ids of the ship from the id and the current ship horizontal values
-    const shipGridSquaresVertical = []
-    
-    //Grid squares in horizontal direction go 0A 0B etc. using the characters etc.
-    // get the grid squares from the board using the ids built previously
-    for (const shipIndex of current) {
-        const gridId = `${droppedShipFirstId + shipIndex}${recievingSquareText[0]}`
-        
-        console.log(gridId)
-        const gridSquare = board.getGridSquareByID(gridId)
-        shipGridSquaresVertical.push(gridSquare)
-    }
-    
+        // }
+        // }else{
+
+        // }
+        //is vertical - note change to direction horizontal as this provides correct values for the grid system
+    } else {
+        let current = shipsArray.find(ship => ship.name === draggedShipClass).directions.horizontal;
+
+        const droppedShipFirstId = recievingSquareNum[0] - draggedShipIndex;
+
+        //calculte the ids of the ship from the id and the current ship horizontal values
+        const shipGridSquaresVertical = []
+
+        //Grid squares in horizontal direction go 0A 0B etc. using the characters etc.
+        // get the grid squares from the board using the ids built previously
+        for (const shipIndex of current) {
+            const gridId = `${droppedShipFirstId + shipIndex}${recievingSquareText[0]}`
+
+            console.log(gridId)
+            const gridSquare = board.getGridSquareByID(gridId)
+            shipGridSquaresVertical.push(gridSquare)
+        }
+
         //update this to work with the board manager 
         let isTaken = shipGridSquaresVertical.some(square => square.isShip);
-        
+
         //  i couldnt work out the if check logic
         if (!isTaken) {
             for (const square of shipGridSquaresVertical) {
                 square.makeShip()
             }
-            
+
             console.log('trying to remove ship from container')
             container.removeChild(target.ship);
         }
