@@ -21,7 +21,7 @@ let turnSet = false;
 
 // SELECTORS
 const gameBoard = document.querySelector('#board')
-const titleNode = document.querySelector('.navbar-text')
+const titleNode = document.querySelector('.turnstate-text')
 const nextTurnBtn = document.querySelector('#next-turn-btn')
 
 // STATE
@@ -112,7 +112,7 @@ nextTurnBtn.addEventListener('click', () => {
     //turn set checks if a ship has been set and the turn can end
     if (turnSet) {
         turnManager.turnComplete()
-        
+        renderBoard
         //render the board for the next turn:
             renderBoard(renderBoardParams)
         

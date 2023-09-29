@@ -9,16 +9,20 @@
     <script type="module" src="scripts/index.js"> </script>
 </head>
 <body>
-    <nav class="navbar bg-body-tertiary">
+    <nav class="navbar bg-info">
         <div class="container-fluid">
-          <span class="navbar-text">
-            
-          </span>
+          <h1>Battleships</h1>
         </div>
       </nav>
-    <div class="container my-5">
-        <div id="board" class="board vw-50"></div>
-        <button type="button" class="btn btn-info mt-2" id="next-turn-btn">Next turn</button>
+    <div class="container py-3 px-auto w-100 bg-dark">
+      <div class="turnstate-text text-info pb-2" >
+
+      </div>
+        <div id="board" class="board w-25"></div>
+        <div class="btncontainer w-25">
+          <button type="button" class="btn btn-info mt-2" id="next-turn-btn">Next turn</button>
+          <button type="button" class="btn btn-info mt-2" id="reset-btn" onClick="location.reload();" >Restart</button>
+        </div>
     </div>
     
 </body>

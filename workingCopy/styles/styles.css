@@ -1,23 +1,34 @@
+/* .body {
+background-color: var(--dark);
+} */
+
 .container {
-    max-height: 80vw;
+    height: 50vw;
+    /* background-color: var(--bs-body-bg); */
+    margin-left: 0;
+    margin-right: 0;
+    min-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .board {
     display: grid;
     grid-template-columns: repeat(10, 1fr);
     grid-template-rows: repeat(10, 1fr);
-    background-image: url(https://media.istockphoto.com/id/1136870172/photo/blue-sea-water-background-atlantic.webp?b=1&s=170667a&w=0&k=20&c=JsBTxVgUqpkZwLlTwsU2XWGGR6noHtWSVy7n3G813BU=);
+    background-image: url(https://images.unsplash.com/photo-1524275804141-5e9f2bc5a71d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80);
     background-position: center;
     background-size: cover;
-    /* max-height: 8; */
 }
 
 
 .grid-square {
     background-color: transparent;
-    border: 1px solid lightgrey;
+    border: 1px solid var(--bs-dark-border-subtle);
     height: 0;
     padding-bottom: 100%;
+    border-radius: 10px;
 }
 
 .ship.ship-visible {
@@ -43,4 +54,13 @@
     color: white;
     font-size: larger;
     align-self: center;
+}
+
+.btncontainer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.turnstate-text {
+
 }
