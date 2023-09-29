@@ -5,6 +5,7 @@ import { renderBoard, whichBoard } from "./renderBoard/renderBoard.js"
 import { GameTurns } from "./turnManager.js"
 import { computerTurn } from "./computer-turn/computer-go.js"
 import { gameOver } from "./gameOver.js"
+import { rotate, dragStart, dragDrop, dragEnd, dragEnter, dragLeave, dragOver, grabShip} from "../../workingCopyDrag/scripts/drag/drag.js"
 
 
 
@@ -16,6 +17,14 @@ let clickFlag = true;
 //flag to ensure user has turn before clicking next turn btn
 let turnSet = false;
 
+
+//target for drag action
+const target = {
+    shipNameWithId:'',
+    ship:'',
+    shipLength: 0
+}
+
 // FUNCTIONS
 
 
@@ -24,8 +33,9 @@ const gameBoard = document.querySelector('#board')
 const titleNode = document.querySelector('.navbar-text')
 const nextTurnBtn = document.querySelector('#next-turn-btn')
 
-//drag code
+//drag code - selectors
 const shipsContainer = document.querySelector('.ships-container');
+console.log(shipsContainer)
 const ships = document.querySelectorAll('.ship');
 
 // STATE
@@ -150,4 +160,32 @@ nextTurnBtn.addEventListener('click', () => {
 
 
 //event listeners from Harrys drag code:
+shipsContainer.addEventListener('mousedown', e => {
+    grabShip(e, target);
+})
+
+ships.forEach(ship => ship.addEventListener('dragstart', e => {dragStart(e, target)}));
+
+//hostGrid changed to gameBoard
+//Replace host squares with the gameBoardObj and then call which board on it using the turn manager
+
+gameBoard.addEventListener('dragover', dragOver);
+gameBoard.addEventListener('dragenter', dragEnter);
+gameBoard.addEventListener('dragleave', dragLeave);
+//use the which board function to return the squares for the board
+console.log(gameBoard.children)
+gameBoard.addEventListener('drop', e => {
+    dragDrop(e, target, gameBoard.children, shipsContainer, whichBoard(turnManager, gameBoardsObj))
+    renderBoard(renderBoardParams)
+});
+gameBoard.addEventListener('dragend', dragEnd);
+
+
+//rotate ships on click
+shipsContainer.addEventListener('click', e => {
+    console.log(`CLICKED SHIP`)
+    if(e.target.parentElement.matches('div.ship'))
+        rotate(e.target.parentElement);
+})
+
 
