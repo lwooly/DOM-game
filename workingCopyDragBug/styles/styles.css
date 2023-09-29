@@ -61,9 +61,12 @@
 .game-over {
     justify-self: center;
     text-align: center;
-    color: var(--bs-heading-color);
-    font-size: larger;
+    font-size: 2em;
     align-self: center;
+    text-wrap: nowrap;
+    border-radius: 10px;
+    padding: 20%;
+    grid-column-start: 5;
 }
 
 .btncontainer {
