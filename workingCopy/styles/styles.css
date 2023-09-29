@@ -26,21 +26,26 @@
     border-radius: 10px;
 }
 
-.ship.ship-visible {
-    background-color: grey;
-}
-
-.selected {
-    background-color: white;
-}
-
-.ship.selected {
-    background-color: red;
-}
-
 /* turn this off after testing */
 .ship {
     background-color: lightblue;
+}
+
+.selected {
+    background-image: url(../images/splash.svg);
+    /* background-color: white; */
+}
+
+
+.ship.selected {
+    background-image: url(../images/shiphit.svg);
+    /* background-color: red; */
+}
+
+.ship.ship-visible {
+    background-image: url(../images/ship.svg);
+    /* background-color: grey; */
+    background-color: transparent;
 }
 
 .game-over {
