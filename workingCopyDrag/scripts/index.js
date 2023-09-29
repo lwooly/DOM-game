@@ -100,6 +100,7 @@ gameBoard.addEventListener('click', (event) => {
         } else {
             //select square after turn 6 to show hit or miss
             board.selectGridSquareById(id)
+            //! CHECK IF THIS IS NEEDED TO TRANSFER
             clickFlag = false;
             turnSet = true;
 
@@ -174,7 +175,7 @@ gameBoard.addEventListener('dragleave', dragLeave);
 //use the which board function to return the squares for the board
 console.log(gameBoard.children)
 gameBoard.addEventListener('drop', e => {
-    if (!turnManager.player() && clickFlag) {
+    if (!turnManager.player() && clickFlag && turnManager.turn < 6) {
     dragDrop(e, target, gameBoard.children, shipsContainer, whichBoard(turnManager, gameBoardsObj))
     renderBoard(renderBoardParams)
     clickFlag = false;
