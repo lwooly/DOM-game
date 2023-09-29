@@ -51,11 +51,6 @@
     flex-wrap: wrap;
 }
 
-#submarine-1 {
-    border-right: 2px solid var(--bs-dark);
-    border-left: 2px solid var(--bs-dark);
-}
-
 .cruiser-container{
     border-radius: 5px;
     width: 120px;
@@ -75,11 +70,6 @@
     flex-wrap: wrap;
 }
 
-#cruiser-1 {
-    border-right: 2px solid var(--bs-dark);
-    border-left: 2px solid var(--bs-dark);
-}
-
 .battleship-container{
     border-radius: 5px;
     width: 160px;
@@ -97,15 +87,6 @@
     display: flex;
     margin: 5px;
     flex-wrap: wrap;
-}
-
-#battleship-1 {
-    border-left: 2px solid var(--bs-dark);
-}
-
-#battleship-1,
-#battleship-2 {
-    border-right: 2px solid var(--bs-dark);
 }
 
 /* .carrier-container{
