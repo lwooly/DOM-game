@@ -4,13 +4,13 @@ const width = 10;
 const directions = ["horizontal", "vertical"];
 
 const shipsArray = [
-    {
-        name: 'destroyer',
-        directions: {
-            horizontal: [0, 1],
-            vertical: [0, width]
-        }
-    },
+    // {
+    //     name: 'destroyer',
+    //     directions: {
+    //         horizontal: [0, 1],
+    //         vertical: [0, width]
+    //     }
+    // },
     {
         name: 'submarine',
         directions: {
@@ -32,14 +32,15 @@ const shipsArray = [
             horizontal: [0, 1, 2, 3],
             vertical: [0, width, width * 2, width * 3]
         }
-    },
-    {
-        name: 'carrier',
-        directions: {
-            horizontal: [0, 1, 2, 3, 4],
-            vertical: [0, width, width * 2, width * 3, width * 4]
-        }
     }
+    // ,
+    // {
+    //     name: 'carrier',
+    //     directions: {
+    //         horizontal: [0, 1, 2, 3, 4],
+    //         vertical: [0, width, width * 2, width * 3, width * 4]
+    //     }
+    // }
 ]
 
 
@@ -265,6 +266,6 @@ export function dragDrop(e, target, squares, container, board) {
         //     container.removeChild(target.ship);
         // }
     }
-    if (!container.querySelector('.ship')) allShipsInPlace = true;
+    // if (!container.querySelector('.ship')) allShipsInPlace = true;
 }
 

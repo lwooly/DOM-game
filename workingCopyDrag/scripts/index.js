@@ -97,25 +97,26 @@ gameBoard.addEventListener('click', (event) => {
         const board = whichBoard(turnManager, gameBoardsObj)
         //make ships when user clicks a tile before turn 6
         if (turnManager.turn < 6) {
-            console.log(id, `id`)
-            board.makeShipById(id)
+            // console.log(id, `id`)
+            // board.makeShipById(id)
         } else {
             //select square after turn 6 to show hit or miss
             board.selectGridSquareById(id)
-        }
+            clickFlag = false;
+            turnSet = true;
 
-        //re-render board to show ship or shot
+            //re-render board to show ship or shot
         renderBoard(renderBoardParams)
-
-        //check if game over
+             //check if game over
          if (board.checkGameOver()) {
             //present game over winner message
             gameOver(turnManager, gameBoard)
          }
+        }
+
 
         //set flags to allow for next turn BTN to be pressed
-        clickFlag = false;
-        turnSet = true;
+        
     } else {
         console.log('location selected')
     }
@@ -175,8 +176,12 @@ gameBoard.addEventListener('dragleave', dragLeave);
 //use the which board function to return the squares for the board
 console.log(gameBoard.children)
 gameBoard.addEventListener('drop', e => {
+    if (!turnManager.player() && clickFlag) {
     dragDrop(e, target, gameBoard.children, shipsContainer, whichBoard(turnManager, gameBoardsObj))
     renderBoard(renderBoardParams)
+    clickFlag = false;
+    turnSet = true;
+    }
 });
 gameBoard.addEventListener('dragend', dragEnd);
 
