@@ -61,7 +61,7 @@
 .game-over {
     justify-self: center;
     text-align: center;
-    color: white;
+    color: var(--bs-heading-color);
     font-size: larger;
     align-self: center;
 }
