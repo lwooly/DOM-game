@@ -53,6 +53,7 @@
     flex-wrap: wrap;
 }
 .submarine-container{
+    border-radius: 5px;
     width: 120px;
     height: 40px;
     background-color: whitesmoke;
@@ -60,6 +61,7 @@
     margin: 5px;
 }
 .submarine-container-vertical{
+    border-radius: 5px;
     width: 40px;
     height: 120px;
     background-color: whitesmoke;
@@ -68,6 +70,7 @@
     flex-wrap: wrap;
 }
 .cruiser-container{
+    border-radius: 5px;
     width: 120px;
     height: 40px;
     background-color: whitesmoke;
@@ -75,6 +78,7 @@
     margin: 5px;
 }
 .cruiser-container-vertical{
+    border-radius: 5px;
     width: 40px;
     height: 120px;
     background-color: whitesmoke;
@@ -83,6 +87,7 @@
     flex-wrap: wrap;
 }
 .battleship-container{
+    border-radius: 5px;
     width: 160px;
     height: 40px;
     background-color: whitesmoke;
@@ -90,6 +95,7 @@
     margin: 5px;
 }
 .battleship-container-vertical{
+    border-radius: 5px;
     width: 40px;
     height: 160px;
     background-color: whitesmoke;
