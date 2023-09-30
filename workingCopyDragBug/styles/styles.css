@@ -37,9 +37,9 @@
 }
 
 /* DEBUG - Turn on to see AI ships */
-.ship {
+/* .ship {
     background-color: lightblue;
-}
+} */
 
 .selected {
     background-image: url(../images/splash.svg);
