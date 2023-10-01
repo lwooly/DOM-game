@@ -5,7 +5,7 @@ import { renderBoard, whichBoard } from "./renderBoard/renderBoard.js"
 import { GameTurns } from "./turnManager.js"
 import { computerTurn } from "./computer-turn/computer-go.js"
 import { gameOver } from "./gameOver.js"
-import { rotate, dragStart, dragDrop, dragEnd, dragEnter, dragLeave, dragOver, grabShip} from "../../workingCopyDrag/scripts/drag/drag.js"
+import { rotate, dragStart, dragDrop, dragEnd, dragEnter, dragLeave, dragOver, grabShip} from "./drag.js"
 
 
 
