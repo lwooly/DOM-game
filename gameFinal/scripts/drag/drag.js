@@ -203,18 +203,6 @@ export function dragDrop(e, target, squares, container, board) {
             console.log('trying to remove ship from container')
             container.removeChild(target.ship);
         }
-
-
-
-        // let isTaken = current.some(index => squares[droppedShipFirstId +index].classList.contains('taken'));
-
-        // if( receivingSquare + (target.shipLength-1) * 10 < 100 && !isTaken){
-        //     for(let i = 0; i < target.shipLength; i++){
-        //         squares[receivingSquare - draggedShipIndex + (10 * i)].classList.add('taken', draggedShipClass, 'ship')
-        //     }
-        //     container.removeChild(target.ship);
-        // }
     }
-    // if (!container.querySelector('.ship')) allShipsInPlace = true;
 }
 
